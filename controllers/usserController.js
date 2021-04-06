@@ -1,8 +1,15 @@
+const { response } = require("express")
+//const jwt = require('jsonwebtoken')
+//const bcrypt = require('bcrypt')
+
 const usserController = (Usser) =>{
   
   const postUsser = async (req, res) => {
     try{
       const { body } = req
+
+      //const encryptedPassword = await bcrypt.hash(req.body.password, 10)
+     // const encryptedUser = 
       const usser = new Usser({
         firstName: body.firstName,
         lastName: body.lastName,
@@ -85,7 +92,31 @@ const usserController = (Usser) =>{
     }
   }
 
-  return {getUssers, postUsser, getUsserById, putUsserById, deleteUsserById}
+  /*const postUsserLogIn = async(req, res) => {
+    try{
+      const {body} = req
+      const response = await Usser.findOne({usserName: body.usserName})
+      const isPasswordCorrect = await bcrypt.compare(body.password, response.password)
+      console.log(isPasswordCorrect)
+      if(response!= null && isPasswordCorrect){
+        const tokenUser = {
+          firstName: response.firstName,
+          lastName: response.lastName,
+          userName: response.userName
+        }
+        const token = jwt.sign(tokenUser, 'secret', {expiresIn: '1h'})
+        return res.status(202).json({message: 'Welcome Usser: ' + response.usserName, token: token})
+      }
+      else{
+        return res.status(202).json({message: 'Dates Invalides'})
+      }
+
+    }catch(error){
+      throw error
+    }
+  }*/
+
+  return {getUssers, postUsser, getUsserById, putUsserById, deleteUsserById/*,postUsserLogIn*/}
 }
 
 module.exports = usserController
