@@ -129,7 +129,7 @@ const usserController = (Usser) =>{
       throw error
     }
   }*/
-
+/*comment*/ 
   return {getUssers, postUsser, getUsserById, putUsserById, deleteUsserById/*,postUsserLogIn*/}
 }
 
