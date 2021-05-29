@@ -11,6 +11,9 @@ const publicationsController = (Publication) => {
     }
   }
 
+/*adsjodhashjbdjhkashjdkajshd
+soy el Pepe y Stich*/
+
   const getPublications = async (req, res) => {//muestra todo lo que contiene mi body
     try{
         const { query } = req
