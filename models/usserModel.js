@@ -9,11 +9,13 @@ const usserModel = new Schema(
     usserName: {type: String },
     password: {type: String },
     email: {type: String},
+    sexo: {type: Number},
+    dateNac: {type: Date},
     address: {type: String},
     phone: {type: Number}
   },
   {
-    collection: 'Ussers'
+    collection: 'ussers'
   }
 )
 

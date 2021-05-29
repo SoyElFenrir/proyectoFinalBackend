@@ -2,8 +2,8 @@ const express = require("express")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 
-const Book = require("./models/bookModel")
-const bookRouter = require("./routes/bookRouter.js")(Book)
+const Publication = require("./models/publicationModel")
+const publicationRouter = require("./routes/publicationRouter")(Publication)
 
 const Usser = require("./models/usserModel")
 const usserRouter = require("./routes/usserRouter")(Usser)
@@ -19,10 +19,9 @@ const connectDB = async () => {
 connectDB()
 //mongoose.connect('mongodb://localhost/bookAPI', {useNewUrlParser: true})
 
-
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-app.use('/api', bookRouter)
+app.use('/api', publicationRouter)
 app.use('/api', usserRouter)
 
 const port = 8085

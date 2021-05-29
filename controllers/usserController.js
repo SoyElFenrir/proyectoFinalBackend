@@ -10,9 +10,13 @@ const usserController = (Usser) =>{
 
       //const encryptedPassword = await bcrypt.hash(req.body.password, 10)
      // const encryptedUser = 
+     console.log('body completo'+ body)
+
       const usser = new Usser({
         firstName: body.firstName,
         lastName: body.lastName,
+        usserName: body.usserName,
+        /*...body/*,
         usserName:(() => {
           if(body.lastName && body.firstName){
             return (body.firstName + "." + body.lastName)
@@ -20,12 +24,17 @@ const usserController = (Usser) =>{
           else{
             return body.firstName ? body.firstName : body.lastName
           }
-          })(),
+          })(),*/
         password: body.password,
         email: body.email,
+        sexo: body.sexo,
+        dateNac: body.dateNac,
         address: body.address,
         phone: body.phone
       })
+
+      console.log('mando'+req)
+      console.log('devuelvo'+res)
       await usser.save()
 
       return res.status(201).json(usser)
@@ -47,8 +56,9 @@ const usserController = (Usser) =>{
   const getUsserById = async (req, res) =>{
     try{
       const{ params } = req
+      console.log('este es el params'+ params)
       const response = await Usser.findById(params.usserId)
-
+      console.log('este es el response'+response)
       return res.json(response)
     }catch(error){
       throw error
@@ -61,21 +71,25 @@ const usserController = (Usser) =>{
       const response = await Usser.findByIdAndUpdate(
         {_id: params.usserId}, {
           $set: {
+            /*...body,*/
             firstName: body.firstName,
             lastName: body.lastName,
-            userName: (() => {
+            userName: body.userName,
+            /*userName: (() => {
               if(body.lastName && body.firstName){
                 return (body.firstName + "." + body.lastName)
               }
               else{
                 return body.firstName ? body.firstName : body.lastName
               }
-              })(),
+              })(),*/
             password: body.password,
             email: body.email,
+            sexo: body.sexo,
+            dateNac: body.dateNac,
             address: body.address,
             phone: body.phone}
-          }, {new: true})
+            },{new: true})
       return res.status(202).json(response)
     }catch(error){
       throw error
